@@ -1,2 +1,5 @@
-# SUSTech_CS207_Digital_Design_Project
-A Tiny Piano Toy
+<div align='center'>
+
+# SUSTech_CS207_Project_Piano
+A Tiny Piano Toy ~~not playable~~
+</div>
