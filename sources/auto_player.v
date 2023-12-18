@@ -5,7 +5,6 @@ module auto_player(
 	output reg pwm
 	);
 	
-	//定义音符时序周期数
 	localparam	L1 = 0,
 				L2 = 0,
 				L3 = 0,
@@ -29,15 +28,12 @@ module auto_player(
 				H6 = 0,
 				H7 = 0;
 
-	reg	[16:0] cnt0;	      //计数每个音符对应的时序周期
-	reg	[10:0] cnt1;	      //计数每个音符重复次数
-	reg	[5:0]  cnt2;	      //计数曲谱中音符个数
-	reg	[16:0] pre_set;	      //预装载值
-	reg	[10:0] duration;	  //定义不同音符重复不同次数
-	wire[10:0] duration_div; //音符重复次数占空比
-	reg	[5:0] note_num;	      //定义曲谱中音符个数
-	
-	//重设音符的个数
+	reg	[16:0] cnt0,cnt1, cnt2;
+	reg	[16:0] pre_set;
+	reg	[10:0] duration;
+	wire[10:0] duration_div;
+	reg	[5:0] note_num;
+
 	always @(posedge clk or negedge rst_n) begin
 		if(!rst_n)
 			note_num <= 0;
@@ -100,6 +96,7 @@ module auto_player(
 			M5: duration = 392;
 			M6: duration = 440;
 			M7: duration = 493;
+			default: duration = 0;
 		endcase
 	end
 	
