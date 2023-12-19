@@ -1,30 +1,23 @@
 module controller(
+    input clk,
     input [2:0] button,
     output reg [1:0] song_num
-    );
-    wire [2:0] button_out, mode_out;
-    debouncer d1(.clk(clk), .button(button[0]), .button_out(button_out[0]));
-    debouncer d2(.clk(clk), .button(button[1]), .button_out(button_out[1]));
-    debouncer d3(.clk(clk), .button(button[2]), .button_out(button_out[2]));
-    
+    );    
+    wire [2:0] mode_out;
+    reg [15:0] cnt1, cnt2;
     initial begin
         song_num = 0;
     end
-
-    always @(posedge button_out[0]) begin
-        if(song_num == 0) begin
-            song_num <= 1;
-        end else begin
-            song_num <= song_num - 1;
-        end
-    end
-
-    always @(posedge button_out[2]) begin
-        if(song_num == 1) begin
-            song_num <= 0;
-        end else begin
-            song_num <= song_num + 1;
-        end
-    end
     
+    always @(posedge clk) begin
+        if(button[0]) cnt1 <= cnt1 + 16'b1;
+        else cnt1 <= 16'b0;
+        if(button[2]) cnt2 <= cnt2 + 16'b1;
+        else cnt2 <= 16'b0;
+        if(cnt1 == 16'hFFFF)
+            song_num <= song_num - 2'b1;
+        if(cnt2 == 16'hFFFF)
+            song_num <= song_num + 2'b1;
+    end
+
 endmodule

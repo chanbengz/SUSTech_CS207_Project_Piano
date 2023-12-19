@@ -6,7 +6,6 @@ module buzzer(
 
 wire [31:0] notes [21:0];
 reg [31:0] cnt;
-reg [4:0] lastnote;
 reg pwm;
 
 assign notes[1]  = 769230; // C3 
@@ -37,7 +36,7 @@ initial begin
 end
 
 always @(posedge clk) begin
-    if((cnt < notes[note])| note == 0) begin
+    if((cnt < notes[note]) | note == 0) begin
         cnt <= cnt + 1'b1;
     end else begin
         pwm =~ pwm;

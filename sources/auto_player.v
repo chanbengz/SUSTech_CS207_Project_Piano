@@ -1,220 +1,219 @@
 module auto_player(
-	input clk,
-	input rst_n,
+	input clk, 
+	input [2:0] mode,
 	input[1:0] song_num,
-	output reg pwm
+	output speaker
 	);
 	
-	localparam	L1 = 0,
-				L2 = 0,
-				L3 = 0,
-				L4 = 0,
-				L5 = 0,
-				L6 = 0,
-				L7 = 0,
-				M0 = 481680,
-				M1 = 381680,
-				M2 = 340136,
-				M3 = 303030,
-				M4 = 285714,
-				M5 = 255102,
-				M6 = 227273,
-				M7 = 202429,
-                H1 = 191204,
-				H2 = 170357,
-				H3 = 151745,
-				H4 = 143061,
-				H5 = 0,
-				H6 = 0,
-				H7 = 0;
-
-	reg	[16:0] cnt0,cnt1, cnt2;
-	reg	[16:0] pre_set;
-	reg	[10:0] duration;
-	wire[10:0] duration_div;
-	reg	[5:0] note_num;
-
-	always @(posedge clk or negedge rst_n) begin
-		if(!rst_n)
+	reg [1:0] last_song_num;
+	reg	 [16:0] cnt_note;
+	reg	 [28:0] duration;
+	reg	 [5:0]  note_num;
+	reg  [4:0]  note, current;
+	parameter period = 50000000;
+	parameter div = 9 * period / 10;
+	buzzer buzzer(.clk(clk), .note(note), .speaker(speaker));
+	
+	initial begin
+	   cnt_note = 0;
+	   note = 0;
+	   duration = 0;
+	end
+	
+	always @(posedge clk) begin
+		if(mode != 3'b011) begin
 			note_num <= 0;
-		else begin
+		end else begin
 			case(song_num)
 				2'b00: note_num <= 48;
-				2'b01: note_num <= 36;
+				2'b01: note_num <= 53;
+				2'b10: note_num <= 44;
 			endcase
 		end
-	end
-
-	always @(posedge clk or negedge rst_n) begin
-		if(!rst_n) begin
-			cnt0 <= 0;
-		end
-		else begin
-			if(cnt0 == pre_set - 1)
-				cnt0 <= 0;
-			else
-				cnt0 <= cnt0 + 1;
-		end
-	end
-
-	always @(posedge clk or negedge rst_n) begin
-		if(!rst_n) begin
-			cnt1 <= 0;
-		end
-		else begin
-			if(cnt0 == pre_set - 1)begin
-				if(cnt1 == duration)
-					cnt1 <= 0;
-				else
-					cnt1 <= cnt1 + 1;
-			end
-		end
-	end
-
-	always @(posedge clk or negedge rst_n) begin
-		if(!rst_n) begin
-			cnt2 <= 0;
-		end
-		else begin
-			if(cnt1 == duration && cnt0 == pre_set - 1) begin
-				if(cnt2 == note_num - 1) begin
-					cnt2 <= 0;
-				end
-				else
-					cnt2 <= cnt2 + 1;
-			end
-		end
-	end
-
-	always @(*) begin
-		case(pre_set)
-			M0: duration = 207;
-			M1: duration = 261;
-			M2: duration = 294;
-			M3: duration = 329;
-			M4: duration = 349;
-			M5: duration = 392;
-			M6: duration = 440;
-			M7: duration = 493;
-			default: duration = 0;
-		endcase
 	end
 	
-	always @(*) begin
-		case(song_num)
-		2'b00: begin
-		case(cnt2)
-				0 : pre_set = M1;
-				1 : pre_set = M1;
-				2 : pre_set = M5;
-				3 : pre_set = M5;
-				4 : pre_set = M6;
-				5 : pre_set = M6;
-				6 : pre_set = M5;
-				7 : pre_set = M0;
-				8 : pre_set = M4;
-				9 : pre_set = M4;
-				10: pre_set = M3;
-				11: pre_set = M3;
-				12: pre_set = M2;
-				13: pre_set = M2;
-				14: pre_set = M1;
-				15: pre_set = M0;
-				16: pre_set = M5;
-				17: pre_set = M5;
-				18: pre_set = M4;
-				19: pre_set = M4;
-				20: pre_set = M3;
-				21: pre_set = M3;
-				22: pre_set = M2;
-				23: pre_set = M0;	
-				24: pre_set = M5;
-				25: pre_set = M5;
-				26: pre_set = M4;
-				27: pre_set = M4;
-				28: pre_set = M3;
-				29: pre_set = M3;
-				30: pre_set = M2;
-				31: pre_set = M0;
-				32: pre_set = M1;
-				33: pre_set = M1;
-				34: pre_set = M5;
-				35: pre_set = M5;
-				36: pre_set = M6;
-				37: pre_set = M6;
-				38: pre_set = M5;
-				39: pre_set = M0;
-				40: pre_set = M4;
-				41: pre_set = M4;
-				42: pre_set = M3;
-				43: pre_set = M3;
-				44: pre_set = M2;
-				45: pre_set = M2;
-				46: pre_set = M1;
-				47: pre_set = M0;
-			endcase
-		end
-		2'b01: begin
-		case(cnt2)
-				0 : pre_set = M1;
-				1 : pre_set = M2;
-				2 : pre_set = M3;
-				3 : pre_set = M1;
-				4 : pre_set = M1;
-				5 : pre_set = M2;
-				6 : pre_set = M3;
-				7 : pre_set = M1;
-				8 : pre_set = M3;
-				9 : pre_set = M4;
-				10: pre_set = M5;
-				11: pre_set = M0;
-				12: pre_set = M3;
-				13: pre_set = M4;
-				14: pre_set = M5;
-				15: pre_set = M0;
-				16: pre_set = M5;
-				17: pre_set = M6;
-				18: pre_set = M5;
-				19: pre_set = M4;
-				20: pre_set = M3;
-				21: pre_set = M1;
-				22: pre_set = M5;
-				23: pre_set = M6;
-				24: pre_set = M5;
-				25: pre_set = M4;
-				26: pre_set = M3;
-				27: pre_set = M1;
-				28: pre_set = M2;
-				29: pre_set = M5;
-				30: pre_set = M1;
-				31: pre_set = M0;
-				32: pre_set = M2;
-				33: pre_set = M5;
-				34: pre_set = M1;
-				35: pre_set = M0;
-			endcase
-		end
-		endcase
+	always @(posedge clk) begin
+	   if(mode != 3'b011 | song_num != last_song_num) begin
+	       duration <= 0;
+	       cnt_note <= 0;
+	       last_song_num <= song_num;
+	   end else begin
+	       if(duration == period) begin
+	           if(cnt_note == note_num) cnt_note <= 1;
+               else cnt_note <= cnt_note + 1;
+	           duration <= 0;
+	       end else begin
+	           duration <= duration + 1;
+	       end
+	   end
 	end
 	
-	always @(posedge clk or negedge rst_n) begin
-		if(!rst_n) begin
-			pwm <= 1'b1;
-		end
-		else if(pre_set != M0) begin
-			if(cnt1 < duration * 4 / 5) begin
-				if(cnt0 < pre_set >> 1) begin
-					pwm <= 1'b1;
-				end 
-				else begin
-					pwm <= 1'b0;
-				end
-			end else begin
-				pwm <= 1'b1;
-			end
-		end
-		else
-			pwm <= 1'b1;
+	always @(posedge clk) begin
+	   if(duration < div) begin
+	       note <= current;
+	   end else begin
+	       note <= 0;
+	   end
+	end
+	
+	always @(song_num, cnt_note) begin
+        case(song_num)
+            2'b00: case(cnt_note)
+               'd1:  current = 8;
+               'd2:  current = 8;
+               'd3:  current = 12;
+               'd4:  current = 12;
+               'd5:  current = 13;
+               'd6:  current = 13;
+               'd7:  current = 12;
+               'd8:  current = 0;
+               'd9:  current = 11; 
+               'd10: current = 11; 
+               'd11: current = 10; 
+               'd12: current = 10; 
+               'd13: current = 9; 
+               'd14: current = 9; 
+               'd15: current = 8; 
+               'd16: current = 0; 
+               'd17: current = 12; 
+               'd18: current = 12; 
+               'd19: current = 11; 
+               'd20: current = 11; 
+               'd21: current = 10; 
+               'd22: current = 10; 
+               'd23: current = 9; 
+               'd24: current = 0; 
+               'd25: current = 12; 
+               'd26: current = 12; 
+               'd27: current = 11; 
+               'd28: current = 11; 
+               'd29: current = 10; 
+               'd30: current = 10; 
+               'd31: current = 9; 
+               'd32: current = 0; 
+               'd33: current = 8; 
+               'd34: current = 8; 
+               'd35: current = 12; 
+               'd36: current = 12; 
+               'd37: current = 13; 
+               'd38: current = 13; 
+               'd39: current = 12; 
+               'd40: current = 0;
+               'd41: current = 11;
+               'd42: current = 11;
+               'd43: current = 10;
+               'd44: current = 10;
+               'd45: current = 9;
+               'd46: current = 9;
+               'd47: current = 8;
+               'd48: current = 0;
+               default current = 0;
+           endcase
+           2'b01: case(cnt_note)
+               'd1:  current = 5;
+               'd2:  current = 10;
+               'd3:  current = 10;
+               'd4:  current = 9;
+               'd5:  current = 11;
+               'd6:  current = 10;
+               'd7:  current = 9;
+               'd8:  current = 9; 
+               'd9:  current = 9; 
+               'd10: current = 8; 
+               'd11: current = 11;
+               'd12: current = 10; 
+               'd13: current = 9;  
+               'd14: current = 9; 
+               'd15: current = 8; 
+               'd16: current = 8; 
+               'd17: current = 9; 
+               'd18: current = 0; 
+               'd19: current = 10;
+               'd20: current = 12; 
+               'd21: current = 15; 
+               'd22: current = 14;
+               'd23: current = 15;
+               'd24: current = 14;
+               'd25: current = 15;
+               'd26: current = 14;
+               'd27: current = 13;
+               'd28: current = 12;
+               'd29: current = 0; 
+               'd30: current = 12;
+               'd31: current = 9; 
+               'd32: current = 11;
+               'd33: current = 11;
+               'd34: current = 10;
+               'd35: current = 10;
+               'd36: current = 0; 
+               'd37: current = 5; 
+               'd38: current = 11;
+               'd39: current = 10;
+               'd40: current = 9;
+               'd41: current = 10;
+               'd42: current = 12;
+               'd43: current = 8;
+               'd44: current = 0;
+               'd45: current = 8;
+               'd46: current = 9;
+               'd47: current = 8;
+               'd48: current = 12;
+               'd49: current = 8;
+               'd50: current = 11;
+               'd51: current = 10;
+               'd52: current = 9;
+               'd53: current = 8;
+               default: current = 0;
+           endcase
+           2'b10: case(cnt_note)
+                'd1:  current = 20;
+                'd2:  current = 19;
+                'd3:  current = 17;
+                'd4:  current = 16;
+                'd5:  current = 12;
+                'd6:  current = 13;
+                'd7:  current = 12;
+                'd8:  current = 6; 
+                'd9:  current = 9; 
+                'd10: current = 10; 
+                'd11: current = 12;
+                'd12: current = 0; 
+                'd13: current = 20;  
+                'd14: current = 19; 
+                'd15: current = 17; 
+                'd16: current = 16; 
+                'd17: current = 12; 
+                'd18: current = 13; 
+                'd19: current = 12;
+                'd20: current = 6; 
+                'd21: current = 9; 
+                'd22: current = 10;
+                'd23: current = 12;
+                'd24: current = 0;
+                'd25: current = 20;
+                'd26: current = 19;
+                'd27: current = 17;
+                'd28: current = 16;
+                'd29: current = 12; 
+                'd30: current = 13;
+                'd31: current = 12; 
+                'd32: current = 6;
+                'd33: current = 9;
+                'd34: current = 9;
+                'd35: current = 0;
+                'd36: current = 20; 
+                'd37: current = 19; 
+                'd38: current = 17;
+                'd39: current = 16;
+                'd40: current = 12;
+                'd41: current = 13;
+                'd42: current = 12;
+                'd43: current = 10;
+                'd44: current = 10;
+                default: current = 0;
+           endcase
+           default: current = 0;
+        endcase
 	end
 
 endmodule
