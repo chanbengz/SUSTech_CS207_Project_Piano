@@ -2,14 +2,13 @@ module buzzer(
     input clk,
     input [6:0] note,
     output speaker
-);
+    );
 
 wire [31:0] notes [21:0];
 reg [31:0] cnt;
 reg [4:0] lastnote;
 reg pwm;
 
-assign notes[0]  = 0;
 assign notes[1]  = 769230; // C3 
 assign notes[2]  = 680272; // D3
 assign notes[3]  = 606061; // E3
@@ -38,7 +37,7 @@ initial begin
 end
 
 always @(posedge clk) begin
-    if(cnt < notes[note] | note == lastnote) begin
+    if((cnt < notes[note] & note == lastnote)| note == 0) begin
         cnt <= cnt + 1'b1;
         lastnote <= note;
     end else begin
