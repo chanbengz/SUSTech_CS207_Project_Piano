@@ -37,9 +37,8 @@ initial begin
 end
 
 always @(posedge clk) begin
-    if((cnt < notes[note] & note == lastnote)| note == 0) begin
+    if((cnt < notes[note])| note == 0) begin
         cnt <= cnt + 1'b1;
-        lastnote <= note;
     end else begin
         pwm =~ pwm;
         cnt <= 0;

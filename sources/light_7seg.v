@@ -1,4 +1,7 @@
-module light_7seg(input [3:0] seg_in, output reg [7:0] seg_out);
+module light_7seg(
+    input [3:0] seg_in,
+    output reg [7:0] seg_out
+    );
     always @(*) begin
         case(seg_in)
             4'b0000: seg_out = 8'b1111_1100; // Display '0' for first song

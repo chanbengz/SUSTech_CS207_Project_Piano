@@ -10,7 +10,7 @@ module main(
     output speaker, pwm_ctrl
     );
     
-    parameter song_num = 0, rst1 = 1;;
+    parameter song_num = 0;
     assign pwm_ctrl = 0;
     assign led[7] = rst;
     wire [3:0] p0, p1, p2, p3, p4, p5, p6, p7;
@@ -20,6 +20,6 @@ module main(
     //             .p0(p0),.p1(p1),.p2(p2),.p3(p3),.p4(p4),.p5(p5),.p6(p6),.p7(p7),
     //             .seg_en(seg_en),.seg_out0(seg_out0), .seg_out1(seg_out1)
     //             );
-    keyboard keyboard(.key(key), .clk(clk), .rst_n(rst1), .speaker(speaker));
+    keyboard keyboard(.key(key), .clk(clk), .pitch(pitch), .rst_n(mode[0]), .speaker(speaker));
 
 endmodule
