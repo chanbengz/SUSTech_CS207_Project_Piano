@@ -65,54 +65,54 @@ module auto_player(
 	always @(song_num, cnt_note) begin
         case(song_num)
             2'b00: case(cnt_note)
-               'd1: begin current = 8;  led = 8'b0000_0001; end
-               'd2: begin current = 8;  led = 8'b0000_0001; end
-               'd3: begin current = 12; led = 8'b0001_0000; end
-               'd4: begin current = 12; led = 8'b0001_0000; end
-               'd5: begin current = 13; led = 8'b0010_0000; end
-               'd6: begin current = 13; led = 8'b0010_0000; end
-               'd7: begin current = 12; led = 8'b0001_0000; end
-               'd8: begin current = 0;  led = 8'b0000_0000; end
-               'd9: begin current = 11; led = 8'b0000_1000; end
-               'd10:begin current = 11; led = 8'b0000_1000; end
-               'd11:begin current = 10; led = 8'b0000_0100; end
-               'd12:begin current = 10; led = 8'b0000_0100; end
-               'd13:begin current = 9;  led = 8'b0000_0010; end
-               'd14:begin current = 9;  led = 8'b0000_0010; end
-               'd15:begin current = 8;  led = 8'b0000_0001; end
-               'd16:begin current = 0;  led = 8'b0000_0000; end
-               'd17:begin current = 12; led = 8'b0001_0000; end
-               'd18:begin current = 12; led = 8'b0001_0000; end
-               'd19:begin current = 11; led = 8'b0000_1000; end
-               'd20:begin current = 11; led = 8'b0000_1000; end
-               'd21:begin current = 10; led = 8'b0000_0100; end
-               'd22:begin current = 10; led = 8'b0000_0100; end
-               'd23:begin current = 9;  led = 8'b0000_0010; end
-               'd24:begin current = 0;  led = 8'b0000_0000; end
-               'd25:begin current = 12; led = 8'b0001_0000; end
-               'd26:begin current = 12; led = 8'b0001_0000; end
-               'd27:begin current = 11; led = 8'b0000_1000; end
-               'd28:begin current = 11; led = 8'b0000_1000; end
-               'd29:begin current = 10; led = 8'b0000_0100; end
-               'd30:begin current = 10; led = 8'b0000_0100; end
-               'd31:begin current = 9;  led = 8'b0000_0010; end
-               'd32:begin current = 0;  led = 8'b0000_0000; end
-               'd33:begin current = 8;  led = 8'b0000_0001; end
-               'd34:begin current = 8;  led = 8'b0000_0001; end
-               'd35:begin current = 12; led = 8'b0001_0000; end
-               'd36:begin current = 12; led = 8'b0001_0000; end
-               'd37:begin current = 13; led = 8'b0010_0000; end
-               'd38:begin current = 13; led = 8'b0010_0000; end
-               'd39:begin current = 12; led = 8'b0001_0000; end
-               'd40:begin current = 0;  led = 8'b0000_0000; end
-               'd41:begin current = 11; led = 8'b0000_1000; end
-               'd42:begin current = 11; led = 8'b0000_1000; end
-               'd43:begin current = 10; led = 8'b0000_0100; end
-               'd44:begin current = 10; led = 8'b0000_0100; end
-               'd45:begin current = 9;  led = 8'b0000_0010; end
-               'd46:begin current = 9;  led = 8'b0000_0010; end
-               'd47:begin current = 8;  led = 8'b0000_0001; end
-               'd48:begin current = 0;  led = 8'b0000_0000; end
+               'd1:  begin current = 8;  led = 8'b0000_0001; end
+               'd2:  begin current = 8;  led = 8'b0000_0001; end
+               'd3:  begin current = 12; led = 8'b0001_0000; end
+               'd4:  begin current = 12; led = 8'b0001_0000; end
+               'd5:  begin current = 13; led = 8'b0010_0000; end
+               'd6:  begin current = 13; led = 8'b0010_0000; end
+               'd7:  begin current = 12; led = 8'b0001_0000; end
+               'd8:  begin current = 0;  led = 8'b0000_0000; end
+               'd9:  begin current = 11; led = 8'b0000_1000; end
+               'd10: begin current = 11; led = 8'b0000_1000; end
+               'd11: begin current = 10; led = 8'b0000_0100; end
+               'd12: begin current = 10; led = 8'b0000_0100; end
+               'd13: begin current = 9;  led = 8'b0000_0010; end
+               'd14: begin current = 9;  led = 8'b0000_0010; end
+               'd15: begin current = 8;  led = 8'b0000_0001; end
+               'd16: begin current = 0;  led = 8'b0000_0000; end
+               'd17: begin current = 12; led = 8'b0001_0000; end
+               'd18: begin current = 12; led = 8'b0001_0000; end
+               'd19: begin current = 11; led = 8'b0000_1000; end
+               'd20: begin current = 11; led = 8'b0000_1000; end
+               'd21: begin current = 10; led = 8'b0000_0100; end
+               'd22: begin current = 10; led = 8'b0000_0100; end
+               'd23: begin current = 9;  led = 8'b0000_0010; end
+               'd24: begin current = 0;  led = 8'b0000_0000; end
+               'd25: begin current = 12; led = 8'b0001_0000; end
+               'd26: begin current = 12; led = 8'b0001_0000; end
+               'd27: begin current = 11; led = 8'b0000_1000; end
+               'd28: begin current = 11; led = 8'b0000_1000; end
+               'd29: begin current = 10; led = 8'b0000_0100; end
+               'd30: begin current = 10; led = 8'b0000_0100; end
+               'd31: begin current = 9;  led = 8'b0000_0010; end
+               'd32: begin current = 0;  led = 8'b0000_0000; end
+               'd33: begin current = 8;  led = 8'b0000_0001; end
+               'd34: begin current = 8;  led = 8'b0000_0001; end
+               'd35: begin current = 12; led = 8'b0001_0000; end
+               'd36: begin current = 12; led = 8'b0001_0000; end
+               'd37: begin current = 13; led = 8'b0010_0000; end
+               'd38: begin current = 13; led = 8'b0010_0000; end
+               'd39: begin current = 12; led = 8'b0001_0000; end
+               'd40: begin current = 0;  led = 8'b0000_0000; end
+               'd41: begin current = 11; led = 8'b0000_1000; end
+               'd42: begin current = 11; led = 8'b0000_1000; end
+               'd43: begin current = 10; led = 8'b0000_0100; end
+               'd44: begin current = 10; led = 8'b0000_0100; end
+               'd45: begin current = 9;  led = 8'b0000_0010; end
+               'd46: begin current = 9;  led = 8'b0000_0010; end
+               'd47: begin current = 8;  led = 8'b0000_0001; end
+               'd48: begin current = 0;  led = 8'b0000_0000; end
                default: begin current = 0; led = 8'b0000_0000;end
            endcase
            2'b01: case(cnt_note)
@@ -169,7 +169,7 @@ module auto_player(
                'd51: current = 10;
                'd52: current = 9;
                'd53: current = 8;
-               default: current = 0;
+               default: begin current = 0; led = 8'b0000_0000;end
            endcase
            2'b10: case(cnt_note)
                 'd1:  current = 20;
@@ -216,9 +216,9 @@ module auto_player(
                 'd42: current = 12;
                 'd43: current = 10;
                 'd44: current = 10;
-                default: current = 0;
-           endcase
-           default: current = 0;
+               default: begin current = 0; led = 8'b0000_0000;end
+            endcase
+            default: begin current = 0; led = 8'b0000_0000;end
         endcase
 	end
 
