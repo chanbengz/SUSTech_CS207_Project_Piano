@@ -42,15 +42,15 @@ module seg_display(
 
     always @(scan_cnt) begin
         case (scan_cnt)
-            3'b000: begin seg_en <= 8'b00000001; seg_in0 <= p0; seg_in1 <= p0; end
-            3'b001: begin seg_en <= 8'b00000010; seg_in0 <= p1; seg_in1 <= p1; end
-            3'b010: begin seg_en <= 8'b00000100; seg_in0 <= p2; seg_in1 <= p2; end
-            3'b011: begin seg_en <= 8'b00001000; seg_in0 <= p3; seg_in1 <= p3; end
-            3'b100: begin seg_en <= 8'b00010000; seg_in0 <= p4; seg_in1 <= p4; end
-            3'b101: begin seg_en <= 8'b00100000; seg_in0 <= p5; seg_in1 <= p5; end
-            3'b110: begin seg_en <= 8'b01000000; seg_in0 <= p6; seg_in1 <= p6; end
-            3'b111: begin seg_en <= 8'b10000000; seg_in0 <= p7; seg_in1 <= p7; end
-            default: seg_en <= 8'b00000000;
+            3'b000: begin seg_en = 8'b00000001; seg_in0 = p0; seg_in1 = p0; end
+            3'b001: begin seg_en = 8'b00000010; seg_in0 = p1; seg_in1 = p1; end
+            3'b010: begin seg_en = 8'b00000100; seg_in0 = p2; seg_in1 = p2; end
+            3'b011: begin seg_en = 8'b00001000; seg_in0 = p3; seg_in1 = p3; end
+            3'b100: begin seg_en = 8'b00010000; seg_in0 = p4; seg_in1 = p4; end
+            3'b101: begin seg_en = 8'b00100000; seg_in0 = p5; seg_in1 = p5; end
+            3'b110: begin seg_en = 8'b01000000; seg_in0 = p6; seg_in1 = p6; end
+            3'b111: begin seg_en = 8'b10000000; seg_in0 = p7; seg_in1 = p7; end
+            default: seg_en = 8'b00000000;
         endcase
     end
 endmodule
