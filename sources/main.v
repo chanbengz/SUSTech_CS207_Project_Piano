@@ -13,7 +13,8 @@ module main(
     
     assign pwm_ctrl = 0;
     wire[1:0] song_num;
-    wire speaker1, speaker2, speaker3, led1, led3, pause;
+    wire speaker1, speaker2, speaker3, pause;
+    wire [7:0] led1, led3;
 
     sig_sel sig_sel(.clk(clk), .rst_n(rst_n), .mode(mode), .song_num(song_num), .speaker1(speaker1), .speaker2(speaker2), .speaker3(speaker3), .led1(led1), .led2(led3), .speaker(speaker) , .led(led), .seg_en(seg_en), .seg_out0(seg_out0), .seg_out1(seg_out1));
     auto_player auto_player(.clk(clk), .mode(mode), .pause(pause), .song_num(song_num), .speaker(speaker1), .led(led1));
