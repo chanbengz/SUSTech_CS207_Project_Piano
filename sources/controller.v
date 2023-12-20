@@ -1,14 +1,15 @@
+// Control the song number and pause/play
+
 module controller(
-    input clk,
-    input [2:0] mode,
-    input [2:0] button,
-    output reg pause,
+    input            clk,
+    input [2:0]      mode,
+    input [2:0]      button,
+    output reg       pause,
     output reg [1:0] song_num
     );
     
-    wire [2:0] mode_out;
-    reg [24:0] cnt1, cnt2, cnt3;
-    parameter gap = 1000000;
+    reg [24:0] cnt1, cnt2, cnt3; // Counters for button 0, 1, 2
+    parameter gap = 1000000;     // Gap between two button presses
     
     initial begin
         song_num = 0;

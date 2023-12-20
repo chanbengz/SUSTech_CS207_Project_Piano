@@ -1,14 +1,15 @@
+// Control the pwm signal of the buzzer
 `include "const.v"
 
 module buzzer(
-    input clk,
+    input       clk,
     input [6:0] note,
-    output speaker
+    output      speaker
     );
 
 wire [31:0] notes [21:0];
-reg [31:0] cnt;
-reg pwm;
+reg  [31:0] cnt;
+reg         pwm;
 
 assign notes[1]  = L1; // C3
 assign notes[2]  = L2; // D3
