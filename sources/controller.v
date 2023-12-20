@@ -16,8 +16,10 @@ module controller(
         else cnt2 <= 16'b0;
         if(cnt1 == 16'hFFFF)
             song_num <= song_num - 2'b1;
-        if(cnt2 == 16'hFFFF)
+        else if(cnt2 == 16'hFFFF)
             song_num <= song_num + 2'b1;
+        else
+            song_num <= song_num;
     end
 
 endmodule
