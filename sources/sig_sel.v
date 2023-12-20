@@ -36,7 +36,7 @@ module sig_sel(
                 speaker <= speaker3;
             end
             default: begin
-                {p7, p6, p5, p4, p3} <= 'h5E660; // hello message
+                {p7, p6, p5, p4, p3} <= 'h6E770; // hello message
                 {p2, p1, p0} <= 'hDDD;
                 led <= 8'b0000_0000;
                 speaker <= 0;
