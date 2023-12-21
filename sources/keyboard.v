@@ -4,7 +4,7 @@ module keyboard(
     input       clk,
     input [6:0] key,   // 0: do, 1: re, 2: mi, 3: fa, 4: sol, 5: la, 6: si
     input [1:0] pitch, // 01: low, 00:middle, 10: high
-    input [2:0] mode,
+    input [2:0] mode,  // 011: auto, 001: manual, 111: learning
     output      speaker
     );
 

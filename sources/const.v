@@ -23,5 +23,12 @@
 `define CLK_FREQ 50000000  // 50MHz
 `define GAP 1000000        // Gap between two button presses
 `define PERIOD 200000      // 
-`define AUTO 'hA89B        // Auto Message
-`define FREE 'hF4EE;       // Free Message
+`define AUTO 20'b01111_10101_10100_10010        // Auto Message
+`define FREE 20'b01111_10011_01110_01110        // Free Message
+`define LRN 15'b10001_10011_10110               // Learn Message
+`define HELLO 25'b10000_01110_10001_10001_00000 // Hello Message
+`define EMPTY3 15'b11111_11111_11111            // Empty Message
+`define EMPTY4 20'b11111_11111_11111_11111      // Empty Message
+`define BAD 20'b01000_10010_01101_11111         // Bad_
+`define SOSO 20'b00101_10010_00101_10010        // SoSo
+`define GOOD 20'b00110_10010_10010_01101        // Good

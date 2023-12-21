@@ -3,7 +3,7 @@
 
 module seg_display(
     input            clk, rst_n,                      // clock, reset
-    input      [3:0] p0, p1, p2, p3, p4, p5, p6, p7,  // data input
+    input      [5:0] p0, p1, p2, p3, p4, p5, p6, p7,  // data input
     output reg [7:0] seg_en,                          // scan signal
     output     [7:0] seg_out0, seg_out1               // 7-segment display
     );

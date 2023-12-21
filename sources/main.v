@@ -6,28 +6,30 @@ module main(
     input  [2:0] mode,                         // 011: auto, 001: manual, 111: learning
     input  [6:0] key,                          // 0: do, 1: re, 2: mi, 3: fa, 4: sol, 5: la, 6: si
     input  [1:0] pitch,                        // 01: low, 00:middle, 10: high
+    input  [1:0] user,                         // 00: user1, 01: user2, 10: user3, 11: user4
     output [7:0] seg_en, seg_out0, seg_out1,   // seg_tube
     output [7:0] led,                          // led
     output       speaker, pwm_ctrl             // speaker
     );
     
-    assign     pwm_ctrl = 0;                        // not used
-    wire [1:0] song_num;                            // song number
-    wire       pause;
+    assign     pwm_ctrl = 0;                   // not used
+    wire [1:0] song_num;                       // song number
+    wire       pause;                          // pause signal
 
-    main_controller   main_con   (.clk(clk),
+    main_controller   main_con (.clk(clk),
                                 .rst_n(rst_n), 
                                 .mode(mode),
                                 .key(key),
                                 .pitch(pitch),
                                 .song_num(song_num),
                                 .pause(pause),
+                                .user(user),
                                 .speaker(speaker),
                                 .led(led),
                                 .seg_en(seg_en),
                                 .seg_out0(seg_out0),
                                 .seg_out1(seg_out1));
 
-    button_controller button_con (.clk(clk), .mode(mode), .pause(pause), .button(button), .song_num(song_num));
+    button_controller button_con(.clk(clk), .mode(mode), .pause(pause), .button(button), .song_num(song_num));
 
 endmodule

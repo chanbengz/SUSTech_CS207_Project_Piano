@@ -3,14 +3,14 @@
 
 module button_controller(
     input            clk,
-    input [2:0]      mode,
+    input [2:0]      mode,       // 011: auto, 001: manual, 111: learning
     input [2:0]      button,
     output reg       pause,
     output reg [1:0] song_num
     );
     
     reg [24:0] cnt1, cnt2, cnt3; // Counters for button 0, 1, 2
-    parameter gap = `GAP;     // Gap between two button presses
+    parameter gap = `GAP;        // Gap between two button presses
     
     initial begin
         song_num = 0;
@@ -18,7 +18,7 @@ module button_controller(
     end
     
     always @(posedge clk) begin
-        if(mode != 3'b011) begin
+        if(mode != 3'b011 | mode != 3'b111) begin
             song_num <= 0;
         end else begin
             if(button[0]) cnt1 <= cnt1 + 25'b1;

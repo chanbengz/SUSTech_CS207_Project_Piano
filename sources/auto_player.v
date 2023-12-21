@@ -14,7 +14,7 @@ module auto_player(
 	reg	 [28:0] duration;                    // Duration Counter
 	reg	 [5:0]  note_num;                    // Number of notes in a song
 	reg  [4:0]  note, current;               // Note and current note
-	reg  [3:0]  note_len;
+	reg  [3:0]  note_len;                    // Note length
 	parameter   period = `CLK_FREQ;          // Note period
 	parameter   note_div = 9 * period / 10;  // Note duration
 
