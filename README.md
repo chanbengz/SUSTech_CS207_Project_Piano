@@ -21,6 +21,10 @@ That's exactly what we need. Anyway, enjoy your time with the toy!
  - [x] Song switching
  - [x] Evaluation of Learning
  - [x] Learning Record
+ - [x] Support crotchet and quaver
+ - [x] Mode & Index of Song Displayed
+ - [ ] Key Adjustment
+ - [ ] VGA Display
 
 ## User Manual
 TO-DO
@@ -29,7 +33,7 @@ TO-DO
 TO-DO
 
 ## Contributors
- - [**@Ben Chen**](https://github.com/chanbengz) *Task:* Main Program (50%)
+ - [**@Ben Chen**](https://github.com/chanbengz)   *Task:* Program (50%)
  - [**@Zhuo Wang**](https://github.com/we-are-zed) *Task:* Test (50%)
 
 ## Development Plan
