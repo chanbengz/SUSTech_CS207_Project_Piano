@@ -22,6 +22,6 @@
 `define SEG_FREQ 200000    // 500kHz
 `define CLK_FREQ 50000000  // 50MHz
 `define GAP 1000000        // Gap between two button presses
-`define PERIOD 200000
+`define PERIOD 200000      // 
 `define AUTO 'hA89B        // Auto Message
 `define FREE 'hF4EE;       // Free Message

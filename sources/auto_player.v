@@ -72,10 +72,7 @@ module auto_player(
 	end
 
     //  Song Sheet and control led
-	always @(mode, song_num, cnt_note) begin
-        if(mode != 3'b011)
-            led = 0;
-        else begin
+	always @(song_num, cnt_note) begin
         case(song_num)
             2'b00: case(cnt_note) // Song 1: Twinkle Twinkle Little Star
                'd1:  begin current = 8;  led = 8'b0000_0001; note_len = 1; end
@@ -251,7 +248,6 @@ module auto_player(
             endcase
             default: begin current = 0; led = 8'b0000_0000; end
         endcase
-        end
 	end
 
 endmodule

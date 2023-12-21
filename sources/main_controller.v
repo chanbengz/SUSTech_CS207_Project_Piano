@@ -38,6 +38,7 @@ module main_controller(
             3'b001: begin // manual
                 {p7, p6, p5, p4} = `FREE;
                 {p3, p2, p1, p0} = 'hDDDD;
+                led = 0;
                 speaker = speaker2;
             end
             3'b111: begin // learning
