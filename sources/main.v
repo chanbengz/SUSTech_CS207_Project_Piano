@@ -13,12 +13,21 @@ module main(
     
     assign     pwm_ctrl = 0;                        // not used
     wire [1:0] song_num;                            // song number
-    wire       speaker1, speaker2, speaker3, pause; // speaker
-    wire [7:0] led1, led3;                          // led
+    wire       pause;
 
-    sig_sel sig_sel(.clk(clk), .rst_n(rst_n), .mode(mode), .song_num(song_num), .speaker1(speaker1), .speaker2(speaker2), .speaker3(speaker3), .led1(led1), .led2(led3), .speaker(speaker) , .led(led), .seg_en(seg_en), .seg_out0(seg_out0), .seg_out1(seg_out1));
-    auto_player auto_player(.clk(clk), .mode(mode), .pause(pause), .song_num(song_num), .speaker(speaker1), .led(led1));
-    keyboard keyboard(.key(key), .clk(clk), .pitch(pitch), .mode(mode), .speaker(speaker2));
-    controller controller(.clk(clk), .mode(mode), .pause(pause), .button(button), .song_num(song_num));
+    main_controller   main_con   (.clk(clk),
+                                .rst_n(rst_n), 
+                                .mode(mode),
+                                .key(key),
+                                .pitch(pitch),
+                                .song_num(song_num),
+                                .pause(pause),
+                                .speaker(speaker),
+                                .led(led),
+                                .seg_en(seg_en),
+                                .seg_out0(seg_out0),
+                                .seg_out1(seg_out1));
+
+    button_controller button_con (.clk(clk), .mode(mode), .pause(pause), .button(button), .song_num(song_num));
 
 endmodule

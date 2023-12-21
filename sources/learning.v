@@ -4,7 +4,8 @@ module learning(
 	input [2:0] mode,
 	input [1:0] song_num,
 	output speaker,
-	output reg [7:0] led
+	output reg [7:0] led,
+	output reg [3:0] pitch
 	);
 
 endmodule

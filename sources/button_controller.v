@@ -1,6 +1,7 @@
 // Control the song number and pause/play
+`include "const.v"
 
-module controller(
+module button_controller(
     input            clk,
     input [2:0]      mode,
     input [2:0]      button,
@@ -9,7 +10,7 @@ module controller(
     );
     
     reg [24:0] cnt1, cnt2, cnt3; // Counters for button 0, 1, 2
-    parameter gap = 1000000;     // Gap between two button presses
+    parameter gap = `GAP;     // Gap between two button presses
     
     initial begin
         song_num = 0;

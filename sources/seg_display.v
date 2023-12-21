@@ -11,7 +11,7 @@ module seg_display(
     reg        clkout;
     reg [31:0] cnt;
     reg [3:0]  scan_cnt, seg_in0, seg_in1;
-    parameter  period = 200000;
+    parameter  period = `PERIOD;
 
     light_7seg light_seg0(.seg_in(seg_in0), .seg_out(seg_out0));
     light_7seg light_seg1(.seg_in(seg_in1), .seg_out(seg_out1));
@@ -43,7 +43,7 @@ module seg_display(
         end
     end
 
-    always @(scan_cnt) begin
+    always @(*) begin
         case (scan_cnt)
             3'b000: begin seg_en = 8'b00000001; seg_in0 = p0; seg_in1 = p0; end
             3'b001: begin seg_en = 8'b00000010; seg_in0 = p1; seg_in1 = p1; end
