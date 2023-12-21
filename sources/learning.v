@@ -97,7 +97,8 @@ module learning(
 	           duration <= duration + 1;
            end else begin
                duration <= 0;
-               score <= score + 1;
+               if(score > 'd1000_000_000) score <= score;
+               else score <= score + 1;
            end
 	   end
 	end

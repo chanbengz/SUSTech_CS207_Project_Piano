@@ -22,6 +22,13 @@ module main_controller(
     wire [4:0]  score_dis0, score_dis1, score_dis2, score_dis3;
     reg  [32:0] record [3:0];
 
+    initial begin
+        record[0] = 0;
+        record[1] = 0;
+        record[2] = 0;
+        record[3] = 0;
+    end
+
     auto_player auto_player (.clk(clk), .mode(mode), .pause(pause), .song_num(song_num), .speaker(speaker1), .led(led1));
     keyboard    keyboard    (.key(key), .clk(clk), .pitch(pitch), .mode(mode), .speaker(speaker2));
     learning    learning    (.clk(clk),
@@ -61,8 +68,7 @@ module main_controller(
             3'b111: begin // learning
                 if(!finished) begin
                     {p7, p6, p5} = `LRN;
-                    {p4, p3, p2, p1} = `EMPTY4; // empty
-                    p0 = {3'b000, song_num};
+                    {p3, p2, p1, p0} = {score_dis3, score_dis2, score_dis1, score_dis0};
                     led = led2;
                 end else begin
                     p7 = 5'b11000;  // 'U'

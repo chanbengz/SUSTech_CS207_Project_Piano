@@ -11,8 +11,10 @@ module score2level(
             {p3, p2, p1, p0} = `BAD; // Bad
         end else if(score > 'd700_000_000) begin
             {p3, p2, p1, p0} = `SOSO; // SoSo
-        end else begin
+        end else if(score > 'd300_000_000)begin
             {p3, p2, p1, p0} = `GOOD; // Good
+        end else begin
+            {p3, p2, p1, p0} = `EMPTY4; // Empty
         end
     end
 
