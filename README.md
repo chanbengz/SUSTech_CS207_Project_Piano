@@ -27,7 +27,15 @@ That's exactly what we need. Anyway, enjoy your time with the toy!
  - [ ] VGA Display
 
 ## User Manual
-TO-DO
+The Switches (SW6 - SW0) is the keys of piano
+```
+┌─┐ ┌─┐ ┌─┐ ┌─┐ ┌─┐ ┌─┐ ┌─┐ 
+│ │ │ │ │ │ │ │ │ │ │ │ │ │ 
+└─┘ └─┘ └─┘ └─┘ └─┘ └─┘ └─┘ 
+ │   │   │   │   │   │   │ 
+
+ Si  La  So  Fa  Mi  Re  Do
+```
 
 ## Architecture
 TO-DO
@@ -36,7 +44,7 @@ TO-DO
  - [**@Ben Chen**](https://github.com/chanbengz)   *Task:* Program (50%)
  - [**@Zhuo Wang**](https://github.com/we-are-zed) *Task:* Test (50%)
 
-## Development Plan
+## Development Schedule
 
 |  Task  | Start time | Detail | Status | Estimating | Actual |
 | ------ | ---------- | ------ | ------ | ---------- | ------ |
