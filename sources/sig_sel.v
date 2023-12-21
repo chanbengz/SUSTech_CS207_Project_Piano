@@ -22,14 +22,14 @@ module sig_sel(
     always @(mode) begin
         case(mode)
             3'b011: begin // auto
-                p7 = 'hA;
-                p6 = {2'b00, song_num};
-                {p5, p4, p3, p2, p1, p0} = 'hDDDDDD;
+                {p7, p6, p5, p4} = 'hA89B; // Auto message
+                p0 = {2'b00, song_num};
+                {p3, p2, p1} = 'hDDD;
                 led = led1;
                 speaker = speaker1;
             end
             3'b001: begin // manual
-                {p7, p6, p5, p4} = 'hF4EE;
+                {p7, p6, p5, p4} = 'hF4EE; // Free message
                 {p3, p2, p1, p0} = 'hDDDD;
                 speaker = speaker2;
             end
@@ -38,7 +38,7 @@ module sig_sel(
                 speaker = speaker3;
             end
             default: begin
-                {p7, p6, p5, p4, p3} = 'h6E770; // hello message
+                {p7, p6, p5, p4, p3} = 'h6E770; // HELLO message
                 {p2, p1, p0} = 'hDDD; // empty
                 led = 8'b0000_0000;
                 speaker = 0;
