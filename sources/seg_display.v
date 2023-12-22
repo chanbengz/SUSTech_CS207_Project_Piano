@@ -3,15 +3,16 @@
 
 module seg_display(
     input            clk, rst_n,                      // clock, reset
-    input      [5:0] p0, p1, p2, p3, p4, p5, p6, p7,  // data input
+    input      [4:0] p0, p1, p2, p3, p4, p5, p6, p7,  // data input
     output reg [7:0] seg_en,                          // scan signal
     output     [7:0] seg_out0, seg_out1               // 7-segment display
     );
 
     reg        clkout;
     reg [31:0] cnt;
-    reg [3:0]  scan_cnt, seg_in0, seg_in1;
-    parameter  period = `PERIOD;
+    reg [3:0]  scan_cnt;
+    reg [4:0]  seg_in0, seg_in1;
+    parameter  period = `SEG_FREQ;
 
     light_7seg light_seg0(.seg_in(seg_in0), .seg_out(seg_out0));
     light_7seg light_seg1(.seg_in(seg_in1), .seg_out(seg_out1));
