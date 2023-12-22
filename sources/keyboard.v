@@ -2,11 +2,11 @@
 `include "const.v"
 
 module keyboard(
-    input       clk,
-    input [6:0] key,   // 0: do, 1: re, 2: mi, 3: fa, 4: sol, 5: la, 6: si
-    input [1:0] pitch, // 01: low, 00:middle, 10: high
-    input [2:0] mode,  // 011: auto, 001: manual, 111: learning
-    output      speaker
+    input       clk,           // Clock
+    input [6:0] key,           // 0: do, 1: re, 2: mi, 3: fa, 4: sol, 5: la, 6: si
+    input [1:0] pitch,         // 01: low, 00:middle, 10: high
+    input [2:0] mode,          // 011: auto, 001: manual, 111: learning
+    output      speaker        // PWM Signal
     );
 
 reg [4:0] note;
@@ -14,7 +14,7 @@ buzzer buzzer(.clk(clk), .note(note), .speaker(speaker));
 
 always @(key, mode, pitch) begin
     if(mode != `MODEFREE) begin
-        note = 0;
+        note = 0;             // Reset
     end else begin
         case({pitch, key})
             `KEYL1: note = 1;  // C3
