@@ -35,7 +35,7 @@ module learning(
 	end
 
 	always @(key, mode, pitch) begin
-		if(mode != 3'b111) begin
+		if(mode != 3'b111 || key != current) begin
 			note = 0;
 		end else begin
 			case({pitch, key})
