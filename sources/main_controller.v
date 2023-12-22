@@ -75,12 +75,15 @@ module main_controller(
                 if(!finished) begin
                     if(song_num == 2'b11) begin
                         user_rec = (record[{user, 2'b00}] + record[{user, 2'b01}] + record[{user, 2'b10}]) / 3;
-                        {p7, p6, p5, p4} = {user_dis3, user_dis2, user_dis1, user_dis0};
-                        {p3, p2, p1} = `EMPTY3;
+                        {p3, p2, p1, p0} = {user_dis3, user_dis2, user_dis1, user_dis0};
+                        p7 = `INU;
+                        p6 = {3'b000, user};
+                        {p5, p4} = `EMPTY2;
                     end else begin
                         {p7, p5} = {`INU, `IN5};
                         p6 = {3'b000, user};
                         p4 = {3'b000, song_num};
+                        {p3, p2, p1} = `EMPTY3;
                         p0 = pitch_dis;
                     end
                     led = led2;
@@ -94,7 +97,7 @@ module main_controller(
             default: begin
                 {p7, p6, p5, p4, p3} = `HELLO;
                 {p2, p1, p0} = `EMPTY3; // empty
-                led = 8'b0000_0000;
+                led = `LEDM;
                 speaker = 0;
             end
         endcase
