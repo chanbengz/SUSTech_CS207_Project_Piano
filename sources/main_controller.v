@@ -77,17 +77,15 @@ module main_controller(
                         user_rec = (record[{user, 2'b00}] + record[{user, 2'b01}] + record[{user, 2'b10}]) / 3;
                         {p7, p6, p5, p4} = {user_dis3, user_dis2, user_dis1, user_dis0};
                         {p3, p2, p1} = `EMPTY3;
-                        
                     end else begin
-                        {p7, p5} = {`SEGU, `SEG5};
+                        {p7, p5} = {`INU, `IN5};
                         p6 = {3'b000, user};
                         p4 = {3'b000, song_num};
                         p0 = pitch_dis;
                     end
                     led = led2;
                 end else begin
-                    p7 = `INU;  // 'U'
-                    p6 = {3'b000, user};
+                    {p7, p6, p5, p4} = `EMPTY4;
                     record[{user, song_num}] = score;
                     {p3, p2, p1, p0} = {score_dis3, score_dis2, score_dis1, score_dis0};
                 end
