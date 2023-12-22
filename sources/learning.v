@@ -34,7 +34,7 @@ module learning(
 	end
 
 	always @(*) begin
-		if(mode != `MODELRN || key != current) begin
+		if(mode != `MODELRN || {pitch, key} != current) begin
 			note = 0;
 		end else begin
 			case({pitch, key})
@@ -80,11 +80,11 @@ module learning(
 	
     // Count the number of notes played
 	always @(posedge clk) begin
-		if(mode != `MODELRN | song_num != last_song_num) begin
-	        duration <= 0;
-	        cnt_note <= 0;
-            finished <= 0;
-            score <= 0;
+		if(mode != `MODELRN | song_num != last_song_num | song_num == 2'b11) begin
+	        duration      <= 0;
+	        cnt_note      <= 0;
+            finished      <= 0;
+            score         <= 0;
 	        last_song_num <= song_num;
 	   end else begin
 	       if(duration == note_div / note_len) begin
@@ -251,7 +251,7 @@ module learning(
                'd91: begin current = `KEYEM; led = `LEDM; note_len = 2; pitch_dis = `INN; end
                'd92: begin current = `KEYM1; led = `LED0; note_len = 2; pitch_dis = `INN; end
                'd93: begin current = `KEYM2; led = `LED0; note_len = 2; pitch_dis = `INN; end
-            default: begin current = `KEYEM; led = `LEDM; note_len = 1; pitch_dis = `INN; end
+            default: begin current = `KEYEM; led = `LEDM; note_len = 1; pitch_dis = 5'b11111; end
            endcase
            2'b10: case(cnt_note) // Song 3: Ode to joy
                 'd1:  begin current = `KEYM3; led = `LED2; note_len = 1; pitch_dis = `INN; end
@@ -316,88 +316,9 @@ module learning(
                 'd60: begin current = `KEYM2; led = `LED1; note_len = 1; pitch_dis = `INN; end
                 'd61: begin current = `KEYM1; led = `LED0; note_len = 2; pitch_dis = `INN; end
                 'd62: begin current = `KEYM1; led = `LED0; note_len = 1; pitch_dis = `INN; end
-             default: begin current = `KEYEM; led = `LEDM; note_len = 1; pitch_dis = `INN; end
+             default: begin current = `KEYEM; led = `LEDM; note_len = 1; pitch_dis = 5'b11111; end
             endcase
-            2'b11: case(cnt_note)
-                'd1:  begin current = `KEYM3; led = `LED2; note_len = 2; pitch_dis = `INN; end
-                'd2:  begin current = `KEYM3; led = `LED2; note_len = 2; pitch_dis = `INN; end
-                'd3:  begin current = `KEYM3; led = `LED2; note_len = 1; pitch_dis = `INN; end
-                'd4:  begin current = `KEYM3; led = `LED2; note_len = 2; pitch_dis = `INN; end
-                'd5:  begin current = `KEYM3; led = `LED2; note_len = 2; pitch_dis = `INN; end
-                'd6:  begin current = `KEYM3; led = `LED2; note_len = 1; pitch_dis = `INN; end
-                'd7:  begin current = `KEYM3; led = `LED0; note_len = 2; pitch_dis = `INN; end
-                'd8:  begin current = `KEYM5; led = `LED0; note_len = 2; pitch_dis = `INN; end
-                'd9:  begin current = `KEYM1; led = `LED0; note_len = 2; pitch_dis = `INN; end
-                'd10: begin current = `KEYM2; led = `LED0; note_len = 4; pitch_dis = `INN; end
-                'd11: begin current = `KEYM3; led = `LED0; note_len = 1; pitch_dis = `INN; end
-                'd12: begin current = `KEYM4; led = `LED3; note_len = 2; pitch_dis = `INN; end
-                'd13: begin current = `KEYM4; led = `LED3; note_len = 2; pitch_dis = `INN; end
-                'd14: begin current = `KEYM4; led = `LED3; note_len = 2; pitch_dis = `INN; end
-                'd15: begin current = `KEYM4; led = `LED3; note_len = 2; pitch_dis = `INN; end
-                'd16: begin current = `KEYM4; led = `LED3; note_len = 2; pitch_dis = `INN; end
-                'd17: begin current = `KEYM3; led = `LED2; note_len = 2; pitch_dis = `INN; end
-                'd18: begin current = `KEYM3; led = `LED2; note_len = 2; pitch_dis = `INN; end
-                'd19: begin current = `KEYM3; led = `LED2; note_len = 2; pitch_dis = `INN; end
-                'd20: begin current = `KEYM5; led = `LED4; note_len = 2; pitch_dis = `INN; end
-                'd21: begin current = `KEYM5; led = `LED4; note_len = 2; pitch_dis = `INN; end
-                'd22: begin current = `KEYM4; led = `LED3; note_len = 2; pitch_dis = `INN; end
-                'd23: begin current = `KEYM2; led = `LED1; note_len = 2; pitch_dis = `INN; end
-                'd24: begin current = `KEYM1; led = `LED0; note_len = 1; pitch_dis = `INN; end
-                'd25: begin current = `KEYL1; led = `LED0; note_len = 1; pitch_dis = `INL; end
-                'd26: begin current = `KEYL5; led = `LED4; note_len = 2; pitch_dis = `INL; end
-                'd27: begin current = `KEYM3; led = `LED2; note_len = 2; pitch_dis = `INN; end
-                'd28: begin current = `KEYM2; led = `LED1; note_len = 2; pitch_dis = `INN; end
-                'd29: begin current = `KEYM1; led = `LED0; note_len = 2; pitch_dis = `INN; end
-                'd30: begin current = `KEYL5; led = `LED4; note_len = 1; pitch_dis = `INL; end
-                'd31: begin current = `KEYL5; led = `LED4; note_len = 4; pitch_dis = `INL; end
-                'd32: begin current = `KEYL5; led = `LED4; note_len = 4; pitch_dis = `INL; end
-                'd33: begin current = `KEYL5; led = `LED4; note_len = 2; pitch_dis = `INL; end
-                'd34: begin current = `KEYM3; led = `LED2; note_len = 2; pitch_dis = `INN; end
-                'd35: begin current = `KEYM2; led = `LED1; note_len = 2; pitch_dis = `INN; end
-                'd36: begin current = `KEYM1; led = `LED0; note_len = 2; pitch_dis = `INN; end
-                'd37: begin current = `KEYL6; led = `LED5; note_len = 1; pitch_dis = `INL; end
-                'd38: begin current = `KEYL6; led = `LED5; note_len = 1; pitch_dis = `INL; end
-                'd39: begin current = `KEYL6; led = `LED5; note_len = 2; pitch_dis = `INL; end
-                'd40: begin current = `KEYM4; led = `LED3; note_len = 2; pitch_dis = `INN; end
-                'd41: begin current = `KEYM3; led = `LED2; note_len = 2; pitch_dis = `INN; end
-                'd42: begin current = `KEYM2; led = `LED1; note_len = 2; pitch_dis = `INN; end
-                'd43: begin current = `KEYL7; led = `LED6; note_len = 1; pitch_dis = `INL; end
-                'd44: begin current = `KEYL5; led = `LED4; note_len = 1; pitch_dis = `INL; end
-                'd45: begin current = `KEYM5; led = `LED4; note_len = 1; pitch_dis = `INN; end
-                'd46: begin current = `KEYM4; led = `LED3; note_len = 2; pitch_dis = `INN; end
-                'd47: begin current = `KEYM2; led = `LED1; note_len = 2; pitch_dis = `INN; end
-                'd48: begin current = `KEYM3; led = `LED2; note_len = 1; pitch_dis = `INN; end
-                'd49: begin current = `KEYM1; led = `LED0; note_len = 2; pitch_dis = `INN; end
-                'd50: begin current = `KEYL5; led = `LED4; note_len = 2; pitch_dis = `INL; end
-                'd51: begin current = `KEYL5; led = `LED4; note_len = 2; pitch_dis = `INL; end
-                'd52: begin current = `KEYM3; led = `LED2; note_len = 2; pitch_dis = `INN; end
-                'd53: begin current = `KEYM2; led = `LED1; note_len = 2; pitch_dis = `INN; end
-                'd54: begin current = `KEYM1; led = `LED0; note_len = 2; pitch_dis = `INN; end
-                'd55: begin current = `KEYL5; led = `LED4; note_len = 1; pitch_dis = `INL; end
-                'd56: begin current = `KEYL5; led = `LED4; note_len = 2; pitch_dis = `INL; end
-                'd57: begin current = `KEYL5; led = `LED4; note_len = 2; pitch_dis = `INL; end
-                'd58: begin current = `KEYM3; led = `LED2; note_len = 2; pitch_dis = `INN; end
-                'd59: begin current = `KEYM2; led = `LED1; note_len = 2; pitch_dis = `INN; end
-                'd60: begin current = `KEYM1; led = `LED0; note_len = 2; pitch_dis = `INN; end
-                'd61: begin current = `KEYL6; led = `LED5; note_len = 1; pitch_dis = `INL; end
-                'd62: begin current = `KEYL6; led = `LED5; note_len = 2; pitch_dis = `INL; end
-                'd63: begin current = `KEYL5; led = `LED4; note_len = 2; pitch_dis = `INL; end
-                'd64: begin current = `KEYM4; led = `LED3; note_len = 2; pitch_dis = `INN; end
-                'd65: begin current = `KEYM3; led = `LED2; note_len = 2; pitch_dis = `INN; end
-                'd66: begin current = `KEYM2; led = `LED1; note_len = 2; pitch_dis = `INN; end
-                'd67: begin current = `KEYM5; led = `LED4; note_len = 2; pitch_dis = `INN; end
-                'd68: begin current = `KEYM5; led = `LED4; note_len = 2; pitch_dis = `INN; end
-                'd69: begin current = `KEYM5; led = `LED4; note_len = 2; pitch_dis = `INN; end
-                'd70: begin current = `KEYM5; led = `LED4; note_len = 2; pitch_dis = `INN; end
-                'd71: begin current = `KEYM6; led = `LED5; note_len = 2; pitch_dis = `INN; end
-                'd72: begin current = `KEYM5; led = `LED4; note_len = 2; pitch_dis = `INN; end
-                'd73: begin current = `KEYM4; led = `LED3; note_len = 2; pitch_dis = `INN; end
-                'd74: begin current = `KEYM2; led = `LED1; note_len = 2; pitch_dis = `INN; end
-                'd75: begin current = `KEYM1; led = `LED0; note_len = 1; pitch_dis = `INN; end
-                'd76: begin current = `KEYEM; led = `LEDM; note_len = 1; pitch_dis = `INN; end
-             default: begin current = `KEYEM; led = `LEDM; note_len = 1; pitch_dis = `INN; end
-            endcase
-            default: begin current = 0; led = `LEDM; end
+            default: begin current = `KEYEM; led = `LEDM; pitch_dis = 5'b11111; end
         endcase
 	end
 
