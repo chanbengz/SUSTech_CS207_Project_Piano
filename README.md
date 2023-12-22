@@ -35,6 +35,7 @@ The tiny switches of SW8 has two functions. The right most three switches is for
 | Free |  001   | Play the piano |
 | Auto |  011   | Play songs automatically |
 | Learning | 111 | Play throught the instruction|
+
 And the left most two switches is for changing user in learning mode.
 When you enter a mode, the name of current mode will be displayed on the segtube.
 
