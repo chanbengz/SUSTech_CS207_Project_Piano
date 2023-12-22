@@ -18,11 +18,11 @@ module main_controller(
     wire [7:0]  led1, led2;                        // led
     reg  [4:0]  p0, p1, p2, p3, p4, p5, p6, p7;    // 7-segment display
     wire        finished;
-    wire [31:0] score;
-    reg  [31:0] user_rec;
+    wire [40:0] score;
+    reg  [40:0] user_rec;
     wire [4:0]  score_dis0, score_dis1, score_dis2, score_dis3;
     wire [4:0]  user_dis0, user_dis1, user_dis2, user_dis3;
-    reg  [31:0] record [3:0];
+    reg  [40:0] record [3:0];
     wire [4:0]  pitch_dis;
 
     initial begin
@@ -32,7 +32,7 @@ module main_controller(
         record[3] = 0;
     end
 
-    auto_player auto_player (.clk(clk), .mode(mode), .pause(pause), .song_num(song_num), .speaker(speaker1), .led(led1));
+    auto_player auto_player (.clk(clk), .mode(mode), .pause(pause), .song_num(song_num), .speaker(speaker1), .led1(led1));
     keyboard    keyboard    (.key(key), .clk(clk), .pitch(pitch), .mode(mode), .speaker(speaker2));
     learning    learning    (.clk(clk),
                             .key(key),
@@ -73,7 +73,7 @@ module main_controller(
             
             `MODELRN: begin // learning
                 if(!finished) begin
-                    user_rec = (record[{user, 2'b00}] + record[{user, 2'b01}] + record[{user, 2'b10}]) / 3;
+                    user_rec = (record[{user, 2'b00}] + record[{user, 2'b01}] + record[{user, 2'b10}] + record[{user, 2'b11}]) / 4;
                     {p7, p6, p5, p4} = {user_dis3, user_dis2, user_dis1, user_dis0};
                     {p3, p2, p1} = `EMPTY3;
                     p0 = pitch_dis;

@@ -14,7 +14,7 @@ module button_controller(
     
     initial begin
         song_num = 0;
-        pause = 0;
+        pause = 1;
     end
     
     always @(posedge clk) begin
@@ -37,7 +37,7 @@ module button_controller(
     
     always @(posedge clk) begin
         if(mode != `MODEAUTO) begin
-            pause <= 0;
+            pause <= 1;
         end else begin
             if(button[1]) cnt3 <= cnt3 + 25'b1;
             else cnt3 <= 25'b0;

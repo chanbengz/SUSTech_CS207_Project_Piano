@@ -20,7 +20,7 @@
 `define H6 113636          // A5
 `define H7 101317          // B5
 `define SEG_FREQ 200000    // 500kHz
-`define CLK_FREQ 50000000  // 50MHz
+`define CLK_FREQ 60000000  // 50MHz
 `define GAP 1000000        // Gap between two button presses
 `define AUTO 20'b01010_10101_10100_10010        // Auto Message
 `define FREE 20'b01111_10011_01110_01110        // Free Message
