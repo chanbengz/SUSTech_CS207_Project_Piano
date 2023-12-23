@@ -8,7 +8,7 @@ A Mini Piano Toy ~~not playable~~
 In this semester project, we implement a piano toy with learn mode
 and music player on the Xilinx(TM) FPGA EGO1 board, and the code
 is written in `Verilog`. Inside the piano, we put four songs for you to enjoy,
-`Twinkle Twinkle Little Star`, `Haruhikake`, `Ode to Joy` and `Jingle Bell`.
+`Twinkle Twinkle Little Star`, `Haruhikage`, `Ode to Joy` and `Jingle Bell`.
 The implementation seems quite simple and straight forward, but it works pretty well.
 That's exactly what we need. Anyway, enjoy your time with the toy!
 
