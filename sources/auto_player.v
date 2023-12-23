@@ -3,8 +3,8 @@
 
 module auto_player(
 	input            clk, pause,             // clock, pause
-	input [2:0]      mode,                   // 011: auto
-	input[1:0]       song_num,               // 00: song1, 01: song2, 10: song3
+	input      [2:0] mode,                   // 011: auto
+	input      [1:0] song_num,               // 00: song1, 01: song2, 10: song3
 	output           speaker,                // pwm signal
 	output reg [7:0] led1                    // control led
 	);

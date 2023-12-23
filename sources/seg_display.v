@@ -8,15 +8,16 @@ module seg_display(
     output     [7:0] seg_out0, seg_out1               // 7-segment display
     );
 
-    reg        clkout;
-    reg [31:0] cnt;
-    reg [3:0]  scan_cnt;
-    reg [4:0]  seg_in0, seg_in1;
-    parameter  period = `SEG_FREQ;
+    reg        clkout;                                // 500Hz clock
+    reg [31:0] cnt;                                   // Counter for the 500Hz clock
+    reg [3:0]  scan_cnt;                              // Scan signal for the 7-segment display
+    reg [4:0]  seg_in0, seg_in1;                      // Data for the 7-segment display
+    parameter  period = `SEG_FREQ;                    // Period of the 500Hz clock
 
     light_7seg light_seg0(.seg_in(seg_in0), .seg_out(seg_out0));
     light_7seg light_seg1(.seg_in(seg_in1), .seg_out(seg_out1));
 
+    // Generate the 500Hz clock
     always @(posedge clk, negedge rst_n) begin
         if (!rst_n) begin
             clkout <= 0;
@@ -32,6 +33,7 @@ module seg_display(
         end
     end
 
+    // Generate the scan signal
     always @(posedge clkout, negedge rst_n) begin
         if (!rst_n) begin
             scan_cnt <= 0;
@@ -44,6 +46,7 @@ module seg_display(
         end
     end
 
+    // Control the 7-segment display
     always @(*) begin
         case (scan_cnt)
             3'b000: begin seg_en = 8'b00000001; seg_in0 = p0; seg_in1 = p0; end

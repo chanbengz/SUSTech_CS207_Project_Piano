@@ -33,6 +33,7 @@ module learning(
         note_len = 1;
 	end
 
+    // Play the note
 	always @(*) begin
 		if(mode != `MODELRN || {pitch, key} != current) begin
 			note = 0;
@@ -157,7 +158,7 @@ module learning(
                'd48: begin current = `KEYEM; led = `LEDM; note_len = 1; pitch_dis = `INN; end
             default: begin current = `KEYEM; led = `LEDM; note_len = 1; pitch_dis = 5'b11111; end
            endcase
-           2'b01: case(cnt_note) // Song 2: Haruhigake
+           2'b01: case(cnt_note) // Song 2: Haruhikake
                'd1:  begin current = `KEYH3; led = `LED2; note_len = 1; pitch_dis = `INH; end
                'd2:  begin current = `KEYH2; led = `LED1; note_len = 2; pitch_dis = `INH; end
                'd3:  begin current = `KEYH1; led = `LED0; note_len = 1; pitch_dis = `INH; end

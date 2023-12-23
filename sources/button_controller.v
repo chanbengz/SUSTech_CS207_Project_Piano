@@ -2,11 +2,11 @@
 `include "const.v"
 
 module button_controller(
-    input            clk,
-    input [2:0]      mode,       // 011: auto, 001: manual, 111: learning
-    input [2:0]      button,
-    output reg       pause,
-    output reg [1:0] song_num
+    input            clk,        // clock
+    input      [2:0] mode,       // 011: auto, 001: manual, 111: learning
+    input      [2:0] button,     // 0: prev, 1: pause/play, 2: next
+    output reg       pause,      // 0: play, 1: pause
+    output reg [1:0] song_num    // 00: song 1, 01: song 2, 10: song 3, 11: song 4
     );
     
     reg [24:0] cnt1, cnt2, cnt3; // Counters for button 0, 1, 2

@@ -17,13 +17,13 @@ module main_controller(
     wire        speaker1, speaker2, speaker3;      // speaker
     wire [7:0]  led1, led2;                        // led
     reg  [4:0]  p0, p1, p2, p3, p4, p5, p6, p7;    // 7-segment display
-    wire        finished;
-    wire [40:0] score;
-    reg  [40:0] user_rec;
-    wire [4:0]  score_dis0, score_dis1, score_dis2, score_dis3;
-    wire [4:0]  user_dis0, user_dis1, user_dis2, user_dis3;
-    reg  [40:0] record [3:0];
-    wire [4:0]  pitch_dis;
+    wire        finished;                          // song finished
+    wire [40:0] score;                             // score of the song
+    reg  [40:0] user_rec;                          // user record
+    wire [4:0]  score_dis0, score_dis1, score_dis2, score_dis3; // score display
+    wire [4:0]  user_dis0, user_dis1, user_dis2, user_dis3;     // user record display
+    reg  [40:0] record [3:0];                      // record of the user
+    wire [4:0]  pitch_dis;                         // pitch display
 
     initial begin
         record[0] = 0;
@@ -57,18 +57,18 @@ module main_controller(
     always @(*) begin
         case(mode)
             `MODEFREE: begin // free
-                {p7, p6, p5, p4} = `FREE;
+                {p7, p6, p5, p4} = `FREE;   // mode message
                 {p3, p2, p1, p0} = `EMPTY4; // empty
-                led = 0;
-                speaker = speaker2;
+                led = 0;                    // turn off the led
+                speaker = speaker2;         // play the keyboard
             end
 
             `MODEAUTO: begin // auto
-                {p7, p6, p5, p4} = `AUTO; // Auto message
-                p0 = {3'b000, song_num};
-                {p3, p2, p1} = `EMPTY3; // empty
-                led = led1;
-                speaker = speaker1;
+                {p7, p6, p5, p4} = `AUTO;   // Auto message
+                p0 = {3'b000, song_num};    // display song number
+                {p3, p2, p1} = `EMPTY3;     // empty
+                led = led1;                 // turn on the led
+                speaker = speaker1;         // play the song
             end
             
             `MODELRN: begin // learning
