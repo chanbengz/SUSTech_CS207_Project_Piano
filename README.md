@@ -125,19 +125,6 @@ SW8
  User           Mode Selection
 ```
 
-## Installation
-1. At first, you should have a `EGO1` board in your hand.
-
-2. Open `Vivado` and create a project. Then import the [sources](sources/) folder into the *design source* and [constr](constr/) folder into *constraints* in the project.
-
-3. Finally, follow the steps in `Vivado`, which are *synthesis*, *implementation* and *generate bitstream*. You should get the bitstream file now.
-
-4. Alternatively, you can use the bitstream provided, which locates at [bit](bit/Piano_2231_0532.bit) and release.
-
-5. Once you get the bitstream, you can connect the board to your computer and click **program device** in the hardware manager panel.
-
-Enjoy it!
-
 ## Architecture
 ![](img/architect.png)
 
@@ -326,3 +313,32 @@ corrupt. As for our product, we would say it's not perfect. We have some ideas a
  - Implement the display of detailed score. Trapped by the design of rule and display.
  - Implement the record of song played by user. Trapped by the load of develop and test.
  - Implement the VGA display. Trapped by the lack of knowledge.
+
+## Project Topic Design
+If we were to design the project topic, we'd like to propose a **Sokoban** game with VGA display.
+The topic is based on the thoughts that
+ - VGA is an essential part of FPGA, also benefitial to the study of computer architecture
+ - It's challenging and requires complex design
+ - It requires mountainous submodules which can train the engineering skills
+ - Getting the game right will lead to a full mark, and extra features should not be counted too much.
+
+The draft requirements would be
+| Task | Category | Detail |
+| ---- | -------- | ------ |
+| Report (20pt) | Document | Description anything that the users and contributors need to know, e.g., user manual principles and structure.|
+| Basic Function (50pt) | Code | Display the map and character normally. When the user press button, the character should move and push the boxes correctly. The wall behaves correctly. |
+| Standard Function (40pt) | Code | Support multiple maps. It would be great if levels are available. |
+| Bonus (20pt) | Code | 1. Multiple users with record 2. Background music and sound effect ... |
+
+## Installation
+1. At first, you should have a `EGO1` board in your hand.
+
+2. Open `Vivado` and create a project. Then import the [sources](sources/) folder into the *design source* and [constr](constr/) folder into *constraints* in the project.
+
+3. Finally, follow the steps in `Vivado`, which are *synthesis*, *implementation* and *generate bitstream*. You should get the bitstream file now.
+
+4. Alternatively, you can use the bitstream provided, which locates at [bit](bit/Piano_2231_0532.bit) and release.
+
+5. Once you get the bitstream, you can connect the board to your computer and click **program device** in the hardware manager panel.
+
+***Enjoy it!***
