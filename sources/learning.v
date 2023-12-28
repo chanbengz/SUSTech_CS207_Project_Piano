@@ -239,9 +239,9 @@ module learning(
                'd78: begin current = `KEYM2; led = `LED1; note_len = 2; pitch_dis = `INN; end
                'd79: begin current = `KEYM1; led = `LED0; note_len = 2; pitch_dis = `INN; end
                'd80: begin current = `KEYL7; led = `LED6; note_len = 4; pitch_dis = `INL; end
-               'd81: begin current = `KEYM1; led = `LED1; note_len = 2; pitch_dis = `INN; end
+               'd81: begin current = `KEYM1; led = `LED0; note_len = 2; pitch_dis = `INN; end
                'd82: begin current = `KEYM5; led = `LED4; note_len = 2; pitch_dis = `INN; end
-               'd83: begin current = `KEYM1; led = `LED1; note_len = 2; pitch_dis = `INN; end
+               'd83: begin current = `KEYM1; led = `LED0; note_len = 2; pitch_dis = `INN; end
                'd84: begin current = `KEYM4; led = `LED3; note_len = 1; pitch_dis = `INN; end
                'd85: begin current = `KEYM3; led = `LED2; note_len = 2; pitch_dis = `INN; end
                'd86: begin current = `KEYM2; led = `LED1; note_len = 2; pitch_dis = `INN; end
