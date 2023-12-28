@@ -91,6 +91,7 @@ module main_controller(
                     {p7, p6, p5, p4} = `EMPTY4;
                     record[{user, song_num}] = score;
                     {p3, p2, p1, p0} = {score_dis3, score_dis2, score_dis1, score_dis0};
+                    led = `LEDM;
                 end
                 speaker = speaker3;
             end
